@@ -5,6 +5,7 @@
     app:startDestination="@id/quoteFragment">
 
     <fragment
+        app:moduleName=":Quotes"
         android:id="@+id/quoteFragment"
         android:name="com.example.quotes.ui.QuoteFragment"
         android:label="QuoteFragment" />

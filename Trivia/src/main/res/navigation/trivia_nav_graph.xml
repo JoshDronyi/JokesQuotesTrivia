@@ -7,5 +7,6 @@
     <fragment
         android:id="@+id/triviaFragment"
         android:name="com.example.trivia.ui.TriviaFragment"
-        android:label="TriviaFragment" />
+        android:label="TriviaFragment"
+        app:moduleName=":Trivia" />
 </navigation>
