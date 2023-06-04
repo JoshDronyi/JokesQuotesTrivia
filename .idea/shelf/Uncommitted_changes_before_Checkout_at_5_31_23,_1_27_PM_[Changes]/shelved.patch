@@ -1,0 +1,121 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    id 'com.android.application'\n    id 'org.jetbrains.kotlin.android'\n}\n\nandroid {\n    namespace 'com.example.jokesquotesandtrivia'\n    compileSdk 33\n\n    defaultConfig {\n        applicationId \"com.example.jokesquotesandtrivia\"\n        minSdk 24\n        targetSdk 33\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n        vectorDrawables {\n            useSupportLibrary true\n        }\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_17\n        targetCompatibility JavaVersion.VERSION_17\n    }\n    kotlinOptions {\n        jvmTarget = '17'\n    }\n    buildFeatures {\n        compose true\n    }\n    composeOptions {\n        kotlinCompilerExtensionVersion '1.4.4'\n    }\n    packagingOptions {\n        resources {\n            excludes += '/META-INF/{AL2.0,LGPL2.1}'\n        }\n    }\n    dynamicFeatures = [':Jokes', ':Quotes', ':Trivia']\n}\n\ndependencies {\n\n    api(project(\":DataLayer\"))\n\n    api 'androidx.core:core-ktx:1.10.1'\n    implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')\n    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'\n    implementation 'androidx.activity:activity-compose:1.7.2'\n\n    api platform('androidx.compose:compose-bom:2022.10.00')\n    api 'androidx.compose.ui:ui'\n    api 'androidx.compose.ui:ui-graphics'\n    api 'androidx.compose.ui:ui-tooling-preview'\n    api 'androidx.compose.material3:material3'\n\n    def nav_version = \"2.5.3\"\n    api \"androidx.navigation:navigation-fragment:$nav_version\"\n    api \"androidx.navigation:navigation-ui-ktx:$nav_version\"\n    api \"androidx.navigation:navigation-dynamic-features-fragment:$nav_version\"\n\n\n\n\n    testImplementation 'junit:junit:4.13.2'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\n    androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')\n    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'\n    debugImplementation 'androidx.compose.ui:ui-tooling'\n    debugImplementation 'androidx.compose.ui:ui-test-manifest'\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision 24532778b62b3e186ed4168cb388c52885213a42)
++++ b/app/build.gradle	(date 1685553123975)
+@@ -68,8 +68,6 @@
+     api "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+ 
+ 
+-
+-
+     testImplementation 'junit:junit:4.13.2'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+Index: app/src/main/java/com/example/jokesquotesandtrivia/uiLayer/main/HomeScreen.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/jokesquotesandtrivia/uiLayer/main/HomeScreen.kt b/app/src/main/java/com/example/jokesquotesandtrivia/uiLayer/main/HomeScreen.kt
+new file mode 100644
+--- /dev/null	(date 1685553902938)
++++ b/app/src/main/java/com/example/jokesquotesandtrivia/uiLayer/main/HomeScreen.kt	(date 1685553902938)
+@@ -0,0 +1,38 @@
++package com.example.jokesquotesandtrivia.uiLayer.main
++
++import androidx.compose.foundation.layout.Arrangement
++import androidx.compose.foundation.layout.Column
++import androidx.compose.foundation.layout.fillMaxWidth
++import androidx.compose.material3.Button
++import androidx.compose.material3.Text
++import androidx.compose.runtime.Composable
++import androidx.compose.ui.Alignment
++import androidx.compose.ui.Modifier
++
++
++@Composable
++fun HomeScreen(
++    onJokeRequest: () -> Unit,
++    onQuoteRequest: () -> Unit,
++    onTriviaRequest: () -> Unit,
++) {
++    Column(
++        verticalArrangement = Arrangement.Center,
++        horizontalAlignment = Alignment.CenterHorizontally,
++        modifier = Modifier.fillMaxWidth()
++    ) {
++        Text(text = "Home Screen")
++
++        Button(onClick = { onJokeRequest() }) {
++            Text(text = "Get Joke")
++        }
++        Button(onClick = { onQuoteRequest() }) {
++            Text(text = "Get Quote")
++        }
++        Button(onClick = { onTriviaRequest() }) {
++            Text(text = "Get Trivia")
++        }
++
++    }
++
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/jokesquotesandtrivia/JQTApplication.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/jokesquotesandtrivia/JQTApplication.kt b/app/src/main/java/com/example/jokesquotesandtrivia/JQTApplication.kt
+new file mode 100644
+--- /dev/null	(date 1685553768768)
++++ b/app/src/main/java/com/example/jokesquotesandtrivia/JQTApplication.kt	(date 1685553768768)
+@@ -0,0 +1,42 @@
++package com.example.jokesquotesandtrivia
++
++import android.util.Log
++import com.google.android.play.core.splitcompat.SplitCompatApplication
++import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
++import com.google.android.play.core.splitinstall.SplitInstallRequest
++
++class JQTApplication : SplitCompatApplication() {
++    private val TAG = "JQTApplication"
++
++    private val splitInstallManager by lazy {
++        SplitInstallManagerFactory.create(applicationContext)
++    }
++
++    fun requestJokeModule() {
++        val request = SplitInstallRequest.newBuilder().addModule(":Jokes").build()
++        splitInstallManager.startInstall(request).addOnSuccessListener {
++            Log.e(TAG, "onCreate: Got the module $it")
++        }.addOnFailureListener {
++            Log.e(TAG, "onCreate: Sorry we had some issue, Couldnt get the module. \n$it")
++        }
++    }
++
++    fun requestQuoteModule() {
++        val request = SplitInstallRequest.newBuilder().addModule(":Quotes").build()
++        splitInstallManager.startInstall(request).addOnSuccessListener {
++            Log.e(TAG, "onCreate: Got the module $it")
++        }.addOnFailureListener {
++            Log.e(TAG, "onCreate: Sorry we had some issue, Couldnt get the module. \n$it")
++        }
++    }
++
++    fun requestTriviaModule() {
++        val request = SplitInstallRequest.newBuilder().addModule(":Trivia").build()
++        splitInstallManager.startInstall(request).addOnSuccessListener {
++            Log.e(TAG, "onCreate: Got the module $it")
++        }.addOnFailureListener {
++            Log.e(TAG, "onCreate: Sorry we had some issue, Couldnt get the module. \n$it")
++        }
++    }
++
++}
+\ No newline at end of file

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.jokesquotesandtrivia.uiLayer.main.MainFragment"
+        android:name="com.probro.jokesquotesandtrivia.uiLayer.main.MainFragment"
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_quote_graph"
