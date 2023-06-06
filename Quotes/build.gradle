@@ -4,7 +4,7 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
 }
 android {
-    namespace 'com.example.quotes'
+    namespace 'com.probro.quotes'
     compileSdk 33
 
     defaultConfig {
