@@ -7,49 +7,23 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.probro.jokesquotesandtrivia.uiLayer.main.MainFragment"
-        android:label="MainFragment" >
+        android:label="MainFragment">
         <action
-            android:id="@+id/action_mainFragment_to_quote_graph"
-            app:destination="@id/quote_graph" />
+            android:id="@+id/action_mainFragment_to_jokes_nav_graph"
+            app:destination="@id/jokes_nav_graph" />
         <action
-            android:id="@+id/action_mainFragment_to_trivia_graph"
-            app:destination="@id/trivia_graph" />
+            android:id="@+id/action_mainFragment_to_quotes_nav_graph"
+            app:destination="@id/quotes_nav_graph" />
         <action
-            android:id="@+id/action_mainFragment_to_joke_graph"
-            app:destination="@id/joke_graph" />
+            android:id="@+id/action_mainFragment_to_trivia_nav_graph"
+            app:destination="@id/trivia_nav_graph" />
     </fragment>
 
-    <include-dynamic
-        android:id="@+id/joke_graph"
-        app:moduleName=":Jokes"
-        app:graphPackage="com.example.jokesquotesandtrivia.jokes"
-        app:graphResName="jokes_nav_graph">
-        <action
-            android:id="@+id/action_joke_graph_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </include-dynamic>
+    <include app:graph="@navigation/jokes_nav_graph" />
 
 
-    <include-dynamic
-        android:id="@+id/quote_graph"
-        app:moduleName=":Quotes"
-        app:graphPackage="com.example.jokesquotesandtrivia.quotes"
-        app:graphResName="quotes_nav_graph">
-        <action
-            android:id="@+id/action_quote_graph_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </include-dynamic>
+    <include app:graph="@navigation/quotes_nav_graph" />
 
 
-    <include-dynamic
-        android:id="@+id/trivia_graph"
-        app:moduleName=":Trivia"
-        app:graphPackage="com.example.jokesquotesandtrivia.trivia"
-        app:graphResName="trivia_nav_graph">
-        <action
-            android:id="@+id/action_trivia_graph_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </include-dynamic>
-
-
+    <include app:graph="@navigation/trivia_nav_graph" />
 </navigation>

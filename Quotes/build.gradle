@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.dynamic-feature'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs.kotlin'
 }
@@ -19,6 +19,13 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    buildFeatures{
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.4'
+    }
 
     buildTypes {
         release {
@@ -29,8 +36,15 @@ android {
 }
 
 dependencies {
-    api project(":app")
+    implementation project(":DataLayer")
+    implementation project(":SharedComposables")
     implementation 'androidx.core:core-ktx:1.10.1'
+
+
+    def nav_version = "2.5.3"
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
 
 
     testImplementation 'junit:junit:4.13.2'

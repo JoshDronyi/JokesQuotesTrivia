@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.probro.datalayer.model.local.TriviaQuestion
-import com.probro.jokesquotesandtrivia.util.DEFAULT_GAME_SIZE
+import com.probro.trivia.util.DEFAULT_GAME_SIZE
 import com.probro.trivia.ui.TriviaState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

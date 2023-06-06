@@ -1,7 +1,7 @@
 package com.probro.jokesquotesandtrivia
 
-import com.google.android.play.core.splitcompat.SplitCompatApplication
+import android.app.Application
 
-class JQTApplication : SplitCompatApplication() {
+class JQTApplication : Application() {
     private val TAG = "JQTApplication"
 }

@@ -25,15 +25,15 @@ class MainFragment : Fragment() {
                 JokesQuotesAndTriviaTheme {
                     HomeScreen(
                         onJokeRequest = {
-                            val action = MainFragmentDirections.actionMainFragmentToJokeGraph()
+                            val action = MainFragmentDirections.actionMainFragmentToJokesNavGraph()
                             navController.navigate(action)
                         },
                         onQuoteRequest = {
-                            val action = MainFragmentDirections.actionMainFragmentToQuoteGraph()
+                            val action = MainFragmentDirections.actionMainFragmentToQuotesNavGraph()
                             navController.navigate(action)
                         },
                         onTriviaRequest = {
-                            val action = MainFragmentDirections.actionMainFragmentToTriviaGraph()
+                            val action = MainFragmentDirections.actionMainFragmentToTriviaNavGraph()
                             navController.navigate(action)
                         },
                     )

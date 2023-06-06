@@ -15,7 +15,6 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.probro.jokes.viewmodel.JokeViewModel
-import com.probro.jokesquotesandtrivia.uiLayer.theme.JokesQuotesAndTriviaTheme
 
 class JokeFragment : Fragment() {
 
@@ -30,11 +29,9 @@ class JokeFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                JokesQuotesAndTriviaTheme {
-                    val jokeState by jokeVM.jokeState.collectAsState()
-                    JokeScreen(jokeState) {
-                        jokeVM.getRandomJoke()
-                    }
+                val jokeState by jokeVM.jokeState.collectAsState()
+                JokeScreen(jokeState) {
+                    jokeVM.getRandomJoke()
                 }
             }
         }

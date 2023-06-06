@@ -10,7 +10,6 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.probro.jokesquotesandtrivia.uiLayer.theme.JokesQuotesAndTriviaTheme
 import com.probro.quotes.viewmodel.QuoteViewModel
 
 class QuoteFragment : Fragment() {
@@ -25,9 +24,8 @@ class QuoteFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                JokesQuotesAndTriviaTheme {
                     QuoteScreen()
-                }
+
             }
         }
     }

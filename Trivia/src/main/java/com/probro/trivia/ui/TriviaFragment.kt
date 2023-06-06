@@ -12,7 +12,6 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.probro.jokesquotesandtrivia.uiLayer.theme.JokesQuotesAndTriviaTheme
 import com.probro.trivia.viewmodel.TriviaViewModel
 
 class TriviaFragment : Fragment() {
@@ -27,10 +26,8 @@ class TriviaFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                JokesQuotesAndTriviaTheme {
-                    val triviaState = triviaVM.triviaState.collectAsState()
-                    TriviaScreen(triviaState.value)
-                }
+                val triviaState = triviaVM.triviaState.collectAsState()
+                TriviaScreen(triviaState.value)
             }
         }
     }
