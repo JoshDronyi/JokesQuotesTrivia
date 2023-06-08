@@ -1,7 +1,7 @@
 package com.probro.datalayer.model.remote
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.probro.datalayer.model.remote.services.JokeRetrofitService
+import com.probro.datalayer.model.remote.services.JokeService
 import com.probro.datalayer.model.remote.services.QuoteRetrofitService
 import com.probro.datalayer.model.remote.services.TriviaService
 import com.probro.datalayer.utils.JOKE_BASE_URL
@@ -29,7 +29,7 @@ object RetrofitClient {
         .client(client)
         .addConverterFactory(Json.asConverterFactory(mediaType))
 
-    fun jokeServiceInstance(): JokeRetrofitService =
+    fun jokeServiceInstance(): JokeService =
         retrofitBuilder
             .baseUrl(JOKE_BASE_URL)
             .build()

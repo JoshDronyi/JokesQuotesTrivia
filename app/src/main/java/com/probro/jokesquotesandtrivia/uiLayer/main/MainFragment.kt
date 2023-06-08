@@ -8,7 +8,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.probro.jokesquotesandtrivia.uiLayer.theme.JokesQuotesAndTriviaTheme
+import com.probro.sharedcomposables.uiLayer.theme.JokesQuotesAndTriviaTheme
 
 class MainFragment : Fragment() {
 

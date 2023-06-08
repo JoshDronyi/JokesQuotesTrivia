@@ -1,4 +1,4 @@
-package com.probro.jokesquotesandtrivia.uiLayer.theme
+package com.probro.sharedcomposables.uiLayer.theme
 
 import android.app.Activity
 import android.os.Build

@@ -4,10 +4,11 @@ import com.probro.datalayer.model.remote.dto.JokeDTO
 import retrofit2.http.GET
 import retrofit2.http.Headers
 
-interface JokeRetrofitService : RetrofitService {
+interface JokeService : RetrofitService {
+
     @Headers(
         "Accept: application/json",
-        "User-Agent: JokesQuotesAndTrivia (Practice App)"
+        "User-Agent: JokesQuotesAndTrivia (Practice App)",
     )
     @GET("/")
     suspend fun getJoke(): JokeDTO
