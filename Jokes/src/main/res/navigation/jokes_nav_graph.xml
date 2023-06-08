@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/jokeFragment"
-        android:name="com.example.jokes.ui.JokeFragment"
+        android:name="com.probro.jokes.ui.JokeFragment"
         android:label="JokeFragment" />
 </navigation>

@@ -6,8 +6,24 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.jokesquotesandtrivia.uiLayer.main.MainFragment"
-        android:label="MainFragment" />
+        android:name="com.probro.jokesquotesandtrivia.uiLayer.main.MainFragment"
+        android:label="MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_jokes_nav_graph"
+            app:destination="@id/jokes_nav_graph" />
+        <action
+            android:id="@+id/action_mainFragment_to_quotes_nav_graph"
+            app:destination="@id/quotes_nav_graph" />
+        <action
+            android:id="@+id/action_mainFragment_to_trivia_nav_graph"
+            app:destination="@id/trivia_nav_graph" />
+    </fragment>
+
+    <include app:graph="@navigation/jokes_nav_graph" />
 
 
+    <include app:graph="@navigation/quotes_nav_graph" />
+
+
+    <include app:graph="@navigation/trivia_nav_graph" />
 </navigation>

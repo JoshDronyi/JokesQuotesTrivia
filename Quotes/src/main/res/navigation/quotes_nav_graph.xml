@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/quoteFragment"
-        android:name="com.example.quotes.ui.QuoteFragment"
+        android:name="com.probro.quotes.ui.QuoteFragment"
         android:label="QuoteFragment" />
 </navigation>

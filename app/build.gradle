@@ -1,14 +1,15 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
-    namespace 'com.example.jokesquotesandtrivia'
+    namespace 'com.probro.jokesquotesandtrivia'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.jokesquotesandtrivia"
+        applicationId "com.probro.jokesquotesandtrivia"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -44,30 +45,25 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
-    dynamicFeatures = [':Jokes', ':Quotes', ':Trivia']
 }
 
 dependencies {
+    implementation(project(":Jokes"))
+    implementation(project(":Quotes"))
+    implementation(project(":Trivia"))
+    implementation(project(":SharedComposables"))
 
-    api(project(":DataLayer"))
+    implementation 'androidx.core:core-ktx:1.10.1'
 
-    api 'androidx.core:core-ktx:1.10.1'
+
     implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.activity:activity-compose:1.7.2'
 
-    api platform('androidx.compose:compose-bom:2022.10.00')
-    api 'androidx.compose.ui:ui'
-    api 'androidx.compose.ui:ui-graphics'
-    api 'androidx.compose.ui:ui-tooling-preview'
-    api 'androidx.compose.material3:material3'
-
-    def nav_version = "2.5.3"
-    api "androidx.navigation:navigation-fragment:$nav_version"
-    api "androidx.navigation:navigation-ui-ktx:$nav_version"
-    api "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
 
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
 
     testImplementation 'junit:junit:4.13.2'
