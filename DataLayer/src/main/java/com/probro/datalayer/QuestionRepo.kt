@@ -3,11 +3,11 @@ package com.probro.datalayer
 import com.probro.datalayer.model.local.TriviaQuestion
 import com.probro.datalayer.model.remote.RetrofitClient
 import com.probro.datalayer.model.remote.dto.TriviaResponseDTO
-import com.probro.datalayer.model.remote.services.TriviaService
+import com.probro.datalayer.utils.cleanText
 
 object QuestionRepo {
 
-    private val triviaService by lazy<TriviaService> {
+    private val triviaService by lazy {
         RetrofitClient.triviaServiceInstance()
     }
 
@@ -22,7 +22,7 @@ object QuestionRepo {
                             category,
                             type,
                             difficulty,
-                            question,
+                            question.cleanText(),
                             correctAnswer,
                             incorrectAnswers,
                         )
@@ -33,4 +33,6 @@ object QuestionRepo {
                 Result.failure(Exception(initialResponse.message()))
             }
         }
+
+
 }

@@ -3,9 +3,12 @@ package com.probro.trivia.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.probro.datalayer.QuestionRepo
 import com.probro.datalayer.model.local.TriviaQuestion
-import com.probro.trivia.util.DEFAULT_GAME_SIZE
 import com.probro.trivia.ui.TriviaState
+import com.probro.trivia.util.DEFAULT_GAME_SIZE
+import com.probro.trivia.util.TriviaNavEvents
+import com.probro.trivia.util.TriviaScreens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,7 +27,7 @@ class TriviaViewModel : ViewModel() {
             }
 
             val questionsResponse: Result<List<TriviaQuestion>> =
-                com.probro.datalayer.QuestionRepo.getQuickGame(totalQuestions)
+                QuestionRepo.getQuickGame(totalQuestions)
 
             Log.e(tag, "GETTING GAME QUESTIONS")
 
@@ -43,4 +46,41 @@ class TriviaViewModel : ViewModel() {
                 )
             }
         }
+
+    fun answerCurrentQuestion(userAnswer: String) {
+        with(_triviaState) {
+            if (userAnswer == _triviaState.value.currentQuestion.correctAnswer) {
+                value = value.copy(
+                    correctAnswers = value.correctAnswers + 1,
+                )
+            }
+            val questionIndex = value.questionList.indexOf(value.currentQuestion)
+            if (questionIndex < (value.questionList.size - 1)) {
+                value = value.copy(
+                    currentQuestion = value.questionList[questionIndex + 1],
+                )
+            } else {
+                // Game over
+                changeNavEvent(TriviaNavEvents.GameScreenToResultsScreen)
+            }
+        }
+    }
+
+    fun changeNavEvent(event: TriviaNavEvents) {
+        with(_triviaState) {
+            value = when (event) {
+                TriviaNavEvents.GameScreenToResultsScreen -> value.copy(
+                    currentScreen = TriviaScreens.RESULTS_PAGE,
+                )
+
+                TriviaNavEvents.HomeScreenToGameScreen -> value.copy(
+                    currentScreen = TriviaScreens.GAME_PAGE,
+                )
+
+                TriviaNavEvents.ResultsScreenToHomeScreen -> value.copy(
+                    currentScreen = TriviaScreens.HOME_PAGE,
+                )
+            }
+        }
+    }
 }
